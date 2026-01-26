@@ -41,16 +41,28 @@
                                     <form method="POST" action="{{ route('login') }}" class="my-4">
                                         @csrf
 
+                                        @if (session('error'))
+                                            <div class="alert alert-danger">
+                                                {{ session('error') }}
+                                            </div>
+                                        @endif
+
                                         <div class="form-group mb-3">
                                             <label for="email" class="form-label">Email address</label>
                                             <input class="form-control" type="email" id="email" name="email" required=""
                                                 placeholder="Enter your email">
+                                            @error('email')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
 
                                         <div class="form-group mb-3">
                                             <label for="password" class="form-label">Password</label>
                                             <input class="form-control" type="password" required="" id="password"
                                                 name="password" placeholder="Enter your password">
+                                            @error('password')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
 
                                         <div class="form-group d-flex mb-3">

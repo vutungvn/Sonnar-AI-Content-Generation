@@ -42,16 +42,27 @@
                                     <form method="POST" action="{{ route('register') }}" class=" my-4">
                                         @csrf
 
+                                        @if (session('error'))
+                                            <div class="alert alert-danger">
+                                                {{ session('error') }}
+                                            </div>
+                                        @endif
+
                                         <div class="form-group mb-3">
                                             <label for="name" class="form-label">Name</label>
                                             <input class="form-control" name="name" type="text" id="name" required=""
                                                 placeholder="Enter your name">
+                                            @error('name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
-
                                         <div class="form-group mb-3">
                                             <label for="email" class="form-label">Email address</label>
                                             <input class="form-control" type="email" id="email" name="email" required=""
                                                 placeholder="Enter your email">
+                                            @error('email')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
 
 
@@ -59,6 +70,9 @@
                                             <label for="password" class="form-label">Password</label>
                                             <input class="form-control" type="password" required="" id="password"
                                                 name="password" placeholder="Enter your password">
+                                            @error('password')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
 
                                         <div class="form-group mb-3">
@@ -67,6 +81,9 @@
                                             <input class="form-control" type="password" required=""
                                                 id="password_confirmation" name="password_confirmation"
                                                 placeholder="Enter your confirm password">
+                                            @error('password_confirmation')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
 
                                         <div class="form-group d-flex mb-3">
