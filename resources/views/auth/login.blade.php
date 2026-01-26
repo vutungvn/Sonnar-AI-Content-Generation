@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Log In Page</title>
+    <title>Login Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc." />
     <meta name="author" content="Zoyothemes" />
@@ -42,7 +42,7 @@
                                         @csrf
 
                                         <div class="form-group mb-3">
-                                            <label for="emailaddress" class="form-label">Email address</label>
+                                            <label for="email" class="form-label">Email address</label>
                                             <input class="form-control" type="email" id="email" name="email" required=""
                                                 placeholder="Enter your email">
                                         </div>
