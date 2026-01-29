@@ -21,3 +21,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login');
+Route::get('/verify', [AdminController::class, 'showVerification'])->name('custom.verification.form');
+Route::post('/verify', [AdminController::class, 'verificationVerify'])->name('custom.verification.verify');
+Route::get('/verify/resend', [AdminController::class, 'resendVerificationCode'])->name('custom.verification.resend');
