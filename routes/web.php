@@ -8,6 +8,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Dashboard Route
 Route::get('/dashboard', function () {
     return view('admin.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -20,8 +21,14 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
+// Admin Authentication Routes
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 Route::get('/verify', [AdminController::class, 'showVerification'])->name('custom.verification.form');
 Route::post('/verify', [AdminController::class, 'verificationVerify'])->name('custom.verification.verify');
 Route::get('/verify/resend', [AdminController::class, 'resendVerificationCode'])->name('custom.verification.resend');
+
+// Admin Profile Routes
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [AdminController::class, 'showProfile'])->name('admin.profile');
+});

@@ -87,4 +87,9 @@ class AdminController extends Controller
 
         return redirect()->back()->with('status', 'New verification code sent to your email.');
     }
+
+    public function showProfile()
+    {
+        return view('admin.admin_profile');
+    }
 }
