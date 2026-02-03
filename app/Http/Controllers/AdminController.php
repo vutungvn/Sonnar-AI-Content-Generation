@@ -90,6 +90,8 @@ class AdminController extends Controller
 
     public function showProfile()
     {
-        return view('admin.admin_profile');
+        $id = Auth::user()->id;
+        $profileData = User::find($id);
+        return view('admin.admin_profile', compact('profileData'));
     }
 }
