@@ -32,4 +32,5 @@ Route::get('/verify/resend', [AdminController::class, 'resendVerificationCode'])
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [AdminController::class, 'showProfile'])->name('admin.profile');
     Route::post('/profile/store', [AdminController::class, 'profileStore'])->name('profile.store');
+    Route::post('/profile/update/password', [AdminController::class, 'updatePassword'])->name('admin.update.password');
 });
