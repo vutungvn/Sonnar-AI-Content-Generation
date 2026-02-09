@@ -4,7 +4,7 @@
             <div class="col-8 col-sm-auto ">
                 <div class="header-logo1 ">
                     <a href="index.html">
-                        <img src="assets/images/logo/logo-dark.svg" alt="logo">
+                        <img src="{{ asset('frontend/assets/images/logo/logo-dark.svg') }}" alt="logo">
                     </a>
                 </div>
             </div>
