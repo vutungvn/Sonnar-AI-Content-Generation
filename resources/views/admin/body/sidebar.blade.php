@@ -40,7 +40,7 @@
                                 <a href="{{ route('all.review') }}" class="tp-link">All Reviews</a>
                             </li>
                             <li>
-                                <a href="auth-register.html" class="tp-link">Add Review</a>
+                                <a href="{{ route('add.review') }}" class="tp-link">Add Review</a>
                             </li>
                         </ul>
                     </div>
