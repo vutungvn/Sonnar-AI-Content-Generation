@@ -32,9 +32,10 @@
                                         <td>{{ $review->id }}</td>
                                         <td>{{ $review->name }}</td>
                                         <td>{{ $review->position }}</td>
-                                        <td><img src="{{ asset($review->image) }}" style="width: 70px; height: 40px;"
+                                        <td><img src="{{ asset($review->image) }}"
+                                                style="width: 60px; height: 60px; border-radius: 10px;"
                                                 alt="{{ $review->name }}"></td>
-                                        <td>{{ $review->message }}</td>
+                                        <td>{{ Str::limit($review->message, 50, '...') }}</td>
                                         <td>
                                             <a href="" class="btn btn-primary btn-sm">Edit</a>
                                             <a href="" class="btn btn-danger btn-sm">Delete</a>

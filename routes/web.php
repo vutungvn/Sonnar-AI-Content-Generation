@@ -39,7 +39,8 @@ Route::middleware('auth')->group(function () {
 // Review Management Routes
 Route::middleware('auth')->group(function () {
     Route::controller(ReviewController::class)->group(function () {
-        Route::get('/all/review', 'AllReview')->name('all.review');
+        Route::get('/all/reviews', 'AllReview')->name('all.review');
         Route::get('/add/review', 'AddReview')->name('add.review');
+        Route::post('/store/review', 'StoreReview')->name('store.review');
     });
 });

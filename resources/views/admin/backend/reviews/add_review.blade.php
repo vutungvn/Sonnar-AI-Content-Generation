@@ -30,7 +30,8 @@
                                                     </div>
                                                 </div>
 
-                                                <form action="" method="POST" enctype="multipart/form-data">
+                                                <form action="{{ route('store.review') }}" method="POST"
+                                                    enctype="multipart/form-data">
                                                     @csrf
 
                                                     <div class="card-body">
