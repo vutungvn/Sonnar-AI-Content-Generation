@@ -112,4 +112,20 @@ class ReviewController extends Controller
             unlink($fullPath);
         }
     }
+
+    // Delete a review from the database.
+    public function DeleteReview($id)
+    {
+        $review = Review::find($id);
+        $image = $review->image;
+        unlink($image);
+        Review::find($id)->delete();
+
+        $notification = array(
+            'message' => 'Review deleted successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
 }
