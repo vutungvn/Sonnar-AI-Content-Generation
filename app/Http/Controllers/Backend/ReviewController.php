@@ -61,6 +61,8 @@ class ReviewController extends Controller
     public function UpdateReview(Request $request)
     {
         $id = $request->id;
+        $review = Review::find($id);
+        $oldPhotoPath = $review->image;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -69,6 +71,10 @@ class ReviewController extends Controller
             $img = $manager->read($image);
             $img->resize(60, 60)->save(public_path('upload/review/' . $name_gen));
             $save_url = 'upload/review/' . $name_gen;
+
+            if ($oldPhotoPath && $oldPhotoPath !== $save_url) {
+                $this->deleteOldPhoto($oldPhotoPath);
+            }
 
             Review::find($id)->update([
                 'name' => $request->name,
@@ -96,6 +102,14 @@ class ReviewController extends Controller
             );
 
             return redirect()->route('all.review')->with($notification);
+        }
+    }
+
+    private function deleteOldPhoto(string $oldPhotoPath)
+    {
+        $fullPath = public_path($oldPhotoPath);
+        if (file_exists($fullPath)) {
+            unlink($fullPath);
         }
     }
 }
