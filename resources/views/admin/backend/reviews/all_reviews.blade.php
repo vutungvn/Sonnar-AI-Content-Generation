@@ -18,7 +18,7 @@
                         <table id="datatable" class="table table-bordered dt-responsive table-responsive nowrap">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>Sl</th>
                                     <th>Name</th>
                                     <th>Position</th>
                                     <th>Image</th>
@@ -27,9 +27,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($reviews as $review)
+                                @foreach ($reviews as $key => $review)
                                     <tr>
-                                        <td>{{ $review->id }}</td>
+                                        <td>{{ $key + 1 }}</td>
                                         <td>{{ $review->name }}</td>
                                         <td>{{ $review->position }}</td>
                                         <td><img src="{{ asset($review->image) }}"
