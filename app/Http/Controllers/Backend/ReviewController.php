@@ -49,4 +49,53 @@ class ReviewController extends Controller
 
         return redirect()->route('all.review')->with($notification);
     }
+
+    // Edit an existing review.
+    public function EditReview($id)
+    {
+        $review = Review::find($id);
+        return view('admin.backend.reviews.edit_review', compact('review'));
+    }
+
+    // Update an existing review in the database.
+    public function UpdateReview(Request $request)
+    {
+        $id = $request->id;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $manager = new ImageManager(new Driver());
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $img = $manager->read($image);
+            $img->resize(60, 60)->save(public_path('upload/review/' . $name_gen));
+            $save_url = 'upload/review/' . $name_gen;
+
+            Review::find($id)->update([
+                'name' => $request->name,
+                'position' => $request->position,
+                'image' => $save_url,
+                'message' => $request->message,
+            ]);
+
+            $notification = array(
+                'message' => 'Review updated with image successfully',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('all.review')->with($notification);
+        } else {
+            Review::find($id)->update([
+                'name' => $request->name,
+                'position' => $request->position,
+                'message' => $request->message,
+            ]);
+
+            $notification = array(
+                'message' => 'Review updated without image successfully',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('all.review')->with($notification);
+        }
+    }
 }
