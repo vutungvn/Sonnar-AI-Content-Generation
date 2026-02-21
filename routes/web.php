@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\ReviewController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -36,7 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/update/password', [AdminController::class, 'updatePassword'])->name('admin.update.password');
 });
 
-// Review Management Routes
+// Management Routes of admin
 Route::middleware('auth')->group(function () {
     Route::controller(ReviewController::class)->group(function () {
         Route::get('/all/reviews', 'AllReview')->name('all.review');
@@ -45,5 +46,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/review/{id}', 'EditReview')->name('edit.review');
         Route::post('/update/review', 'UpdateReview')->name('update.review');
         Route::get('/delete/review/{id}', 'DeleteReview')->name('delete.review');
+    });
+
+    Route::controller(SliderController::class)->group(function () {
+        Route::get('/get/sliders', 'GetSliders')->name('get.slider');
     });
 });

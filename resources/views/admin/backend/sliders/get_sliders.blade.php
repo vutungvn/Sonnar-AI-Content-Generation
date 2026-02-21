@@ -11,7 +11,7 @@
                 <div class="card">
 
                     <div class="card-header">
-                        <h5 class="card-title mb-0">All Reviews</h5>
+                        <h5 class="card-title mb-0">Get Sliders</h5>
                     </div><!-- end card header -->
 
                     <div class="card-body">
@@ -19,28 +19,30 @@
                             <thead>
                                 <tr>
                                     <th>Sl</th>
-                                    <th>Name</th>
-                                    <th>Position</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Link</th>
                                     <th>Image</th>
-                                    <th>Message</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($reviews as $key => $review)
+                                @foreach ($sliders as $key => $slider)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $review->name }}</td>
-                                        <td>{{ $review->position }}</td>
-                                        <td><img src="{{ asset($review->image) }}"
+                                        <td>{{ $slider->title }}</td>
+                                        <td>{{ Str::limit($slider->description, 50, '...') }}</td>
+                                        <td>{{ $slider->link }}</td>
+                                        <td><img src="{{ asset($slider->image) }}"
                                                 style="width: 60px; height: 60px; border-radius: 10px;"
-                                                alt="{{ $review->name }}"></td>
-                                        <td>{{ Str::limit($review->message, 50, '...') }}</td>
+                                                alt="{{ $slider->title }}"></td>
                                         <td>
-                                            <a href="{{ route('edit.review', $review->id) }}"
+                                            {{-- <a href="{{ route('edit.review', $review->id) }}"
                                                 class="btn btn-primary btn-sm">Edit</a>
                                             <a href="{{ route('delete.review', $review->id) }}" id="delete"
-                                                class="btn btn-danger btn-sm">Delete</a>
+                                                class="btn btn-danger btn-sm">Delete</a> --}}
+                                            <a href="" class="btn btn-primary btn-sm">Edit</a>
+                                            <a href="" id="delete" class="btn btn-danger btn-sm">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
