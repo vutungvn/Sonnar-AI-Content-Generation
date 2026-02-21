@@ -110,4 +110,23 @@ class SliderController extends Controller
             return redirect()->route('get.slider')->with($notification);
         }
     }
+
+    // Delete a slider from the database.
+    public function DeleteSlider($id)
+    {
+        $slider = Slider::find($id);
+        $image = $slider->image;
+        if ($image) {
+            unlink($image);
+        }
+
+        Slider::find($id)->delete();
+
+        $notification = array(
+            'message' => 'Slider deleted successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
 }

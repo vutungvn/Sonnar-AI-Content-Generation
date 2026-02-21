@@ -127,7 +127,6 @@ class ReviewController extends Controller
         if ($image) {
             unlink($image);
         }
-        // unlink($image);
         Review::find($id)->delete();
 
         $notification = array(
