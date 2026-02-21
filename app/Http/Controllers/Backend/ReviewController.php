@@ -40,6 +40,12 @@ class ReviewController extends Controller
                 'image' => $save_url,
                 'message' => $request->message,
             ]);
+        } else {
+            Review::create([
+                'name' => $request->name,
+                'position' => $request->position,
+                'message' => $request->message,
+            ]);
         }
 
         $notification = array(
@@ -118,7 +124,10 @@ class ReviewController extends Controller
     {
         $review = Review::find($id);
         $image = $review->image;
-        unlink($image);
+        if ($image) {
+            unlink($image);
+        }
+        // unlink($image);
         Review::find($id)->delete();
 
         $notification = array(

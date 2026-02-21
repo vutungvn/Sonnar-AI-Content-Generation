@@ -52,5 +52,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/get/sliders', 'GetSliders')->name('get.slider');
         Route::get('/add/slider', 'AddSlider')->name('add.slider');
         Route::post('/store/slider', 'StoreSlider')->name('store.slider');
+        Route::get('/edit/slider/{id}', 'EditSlider')->name('edit.slider');
+        Route::post('/update/slider', 'UpdateSlider')->name('update.slider');
     });
 });

@@ -41,7 +41,8 @@
                                                 class="btn btn-primary btn-sm">Edit</a>
                                             <a href="{{ route('delete.review', $review->id) }}" id="delete"
                                                 class="btn btn-danger btn-sm">Delete</a> --}}
-                                            <a href="" class="btn btn-primary btn-sm">Edit</a>
+                                            <a href="{{ route('edit.slider', $slider->id) }}"
+                                                class="btn btn-primary btn-sm">Edit</a>
                                             <a href="" id="delete" class="btn btn-danger btn-sm">Delete</a>
                                         </td>
                                     </tr>

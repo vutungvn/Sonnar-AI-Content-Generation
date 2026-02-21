@@ -40,6 +40,12 @@ class SliderController extends Controller
                 'link' => $request->link,
                 'image' => $save_url,
             ]);
+        } else {
+            Slider::create([
+                'title' => $request->title,
+                'description' => $request->description,
+                'link' => $request->link,
+            ]);
         }
 
         $notification = array(
@@ -48,5 +54,60 @@ class SliderController extends Controller
         );
 
         return redirect()->route('get.slider')->with($notification);
+    }
+
+    // Edit an existing slider.
+    public function EditSlider($id)
+    {
+        $slider = Slider::find($id);
+        return view('admin.backend.sliders.edit_slider', compact('slider'));
+    }
+
+    // Update an existing slider in the database.
+    public function UpdateSlider(Request $request)
+    {
+        $id = $request->id;
+        $slider = Slider::find($id);
+        $full_path = public_path($slider->image);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $manager = new ImageManager(new Driver());
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $img = $manager->read($image);
+            $img->resize(306, 618)->save(public_path('upload/slider/' . $name_gen));
+            $save_url = 'upload/slider/' . $name_gen;
+
+            if (file_exists($full_path)) {
+                unlink($full_path);
+            }
+
+            Slider::find($id)->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'link' => $request->link,
+                'image' => $save_url,
+            ]);
+
+            $notification = array(
+                'message' => 'Slider updated with image successfully',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('get.slider')->with($notification);
+        } else {
+            Slider::find($id)->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'link' => $request->link,
+            ]);
+
+            $notification = array(
+                'message' => 'Slider updated without image successfully',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('get.slider')->with($notification);
+        }
     }
 }
