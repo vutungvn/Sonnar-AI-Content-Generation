@@ -58,7 +58,7 @@
                                 <a href="{{ route('get.slider') }}" class="tp-link">Get Sliders</a>
                             </li>
                             <li>
-                                <a href="error-500.html" class="tp-link">Add Slider</a>
+                                <a href="{{ route('add.slider') }}" class="tp-link">Add Slider</a>
                             </li>
                         </ul>
                     </div>
