@@ -129,4 +129,22 @@ class SliderController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    // Edit slider
+    public function EditSliderWithTitleAndDescription(Request $request, $id)
+    {
+        $slider = Slider::find($id);
+
+        if ($request->has('title')) {
+            $slider->title = $request->title;
+        }
+
+        if ($request->has('description')) {
+            $slider->description = $request->description;
+        }
+
+        $slider->save();
+
+        return response()->json(['success' => true]);
+    }
 }
