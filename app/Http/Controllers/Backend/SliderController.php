@@ -162,4 +162,18 @@ class SliderController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    // Edit Reviews
+    public function EditReviews(Request $request, $id)
+    {
+        $title = Title::findOrFail($id);
+
+        if ($request->has('reviews')) {
+            $title->reviews = $request->reviews;
+        }
+
+        $title->save();
+
+        return response()->json(['success' => true]);
+    }
 }
