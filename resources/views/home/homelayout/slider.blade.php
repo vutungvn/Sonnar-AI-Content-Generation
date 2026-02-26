@@ -1,5 +1,5 @@
 @php
-    $slider = App\Models\Slider::find(2);
+    $slider = App\Models\Slider::find(1);
 @endphp
 
 <div class="lonyo-hero-section light-bg">
@@ -66,7 +66,14 @@
         }
 
         // Auto save on Enter key
-        document.addEventListener('keydown', function (e) {
+        titleElement.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                saveChanges(e.target);
+            }
+        })
+
+        descriptionElement.addEventListener('keydown', function (e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 saveChanges(e.target);

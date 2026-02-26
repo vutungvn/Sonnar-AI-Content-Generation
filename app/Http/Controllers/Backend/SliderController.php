@@ -134,7 +134,7 @@ class SliderController extends Controller
     // Edit slider
     public function EditSliderWithTitleAndDescription(Request $request, $id)
     {
-        $slider = Slider::find($id);
+        $slider = Slider::findOrFail($id);
 
         if ($request->has('title')) {
             $slider->title = $request->title;
@@ -152,7 +152,7 @@ class SliderController extends Controller
     // Edit Features
     public function EditFeatures(Request $request, $id)
     {
-        $title = Title::find($id);
+        $title = Title::findOrFail($id);
 
         if ($request->has('features')) {
             $title->features = $request->features;

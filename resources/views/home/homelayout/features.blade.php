@@ -120,7 +120,7 @@
         }
 
         // Auto save on Enter key
-        document.addEventListener('keydown', function (e) {
+        titleElement.addEventListener('keydown', function (e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 saveChanges(e.target);
