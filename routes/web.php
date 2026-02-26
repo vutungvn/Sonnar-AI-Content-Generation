@@ -56,5 +56,6 @@ Route::middleware('auth')->group(function () {
         Route::post('/update/slider', 'UpdateSlider')->name('update.slider');
         Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
         Route::post('/edit-slider/{id}', 'EditSliderWithTitleAndDescription');
+        Route::post('/edit-features/{id}', 'EditFeatures');
     });
 });
