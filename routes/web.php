@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\FeatureController;
 use App\Http\Controllers\Backend\ReviewController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\ProfileController;
@@ -39,6 +40,7 @@ Route::middleware('auth')->group(function () {
 
 // Management Routes of admin
 Route::middleware('auth')->group(function () {
+    // Review Management Routes
     Route::controller(ReviewController::class)->group(function () {
         Route::get('/all/reviews', 'AllReview')->name('all.review');
         Route::get('/add/review', 'AddReview')->name('add.review');
@@ -48,6 +50,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/delete/review/{id}', 'DeleteReview')->name('delete.review');
     });
 
+    // Slider Management Routes
     Route::controller(SliderController::class)->group(function () {
         Route::get('/get/sliders', 'GetSliders')->name('get.slider');
         Route::get('/add/slider', 'AddSlider')->name('add.slider');
@@ -59,5 +62,15 @@ Route::middleware('auth')->group(function () {
         Route::post('/edit-features/{id}', 'EditFeatures');
         Route::post('/edit-reviews/{id}', 'EditReviews');
         Route::post('/edit-answers/{id}', 'EditAnswers');
+    });
+
+    // Feature Management Routes
+    Route::controller(FeatureController::class)->group(function () {
+        Route::get('/all/features', 'AllFeature')->name('all.feature');
+        Route::get('/add/review', 'AddReview')->name('add.review');
+        Route::post('/store/review', 'StoreReview')->name('store.review');
+        Route::get('/edit/review/{id}', 'EditReview')->name('edit.review');
+        Route::post('/update/review', 'UpdateReview')->name('update.review');
+        Route::get('/delete/review/{id}', 'DeleteReview')->name('delete.review');
     });
 });
