@@ -37,4 +37,30 @@ class FeatureController extends Controller
 
         return redirect()->route('all.feature')->with($notification);
     }
+
+    // Edit an existing feature.
+    public function EditFeature($id)
+    {
+        $feature = Feature::find($id);
+        return view('admin.backend.features.edit_feature', compact('feature'));
+    }
+
+    // Update an existing feature in the database.
+    public function UpdateFeature(Request $request)
+    {
+        $id = $request->id;
+
+        Feature::find($id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'icon' => $request->icon,
+        ]);
+
+        $notification = array(
+            'message' => 'Feature updated successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.feature')->with($notification);
+    }
 }
