@@ -63,4 +63,17 @@ class FeatureController extends Controller
 
         return redirect()->route('all.feature')->with($notification);
     }
+
+    // Delete a feature from the database.
+    public function DeleteFeature($id)
+    {
+        Feature::find($id)->delete();
+
+        $notification = array(
+            'message' => 'Feature deleted successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
 }
