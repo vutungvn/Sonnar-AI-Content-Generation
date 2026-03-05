@@ -33,10 +33,12 @@
                                         <td>{{ Str::limit($feature->description, 50, '...') }}</td>
                                         <td>{{ $feature->icon }}</td>
                                         <td>
-                                            <a href="{{ route('edit.review', $review->id) }}"
+                                            {{-- <a href="{{ route('edit.review', $review->id) }}"
                                                 class="btn btn-primary btn-sm">Edit</a>
                                             <a href="{{ route('delete.review', $review->id) }}" id="delete"
-                                                class="btn btn-danger btn-sm">Delete</a>
+                                                class="btn btn-danger btn-sm">Delete</a> --}}
+                                            <a href="" class="btn btn-primary btn-sm">Edit</a>
+                                            <a href="" id="delete" class="btn btn-danger btn-sm">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

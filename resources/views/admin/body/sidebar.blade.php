@@ -76,7 +76,7 @@
                                 <a href="{{ route('all.feature') }}" class="tp-link">All Features</a>
                             </li>
                             <li>
-                                <a href="{{ route('add.review') }}" class="tp-link">Add Feature</a>
+                                <a href="{{ route('add.feature') }}" class="tp-link">Add Feature</a>
                             </li>
                         </ul>
                     </div>
