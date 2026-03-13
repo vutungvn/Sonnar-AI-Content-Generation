@@ -53,4 +53,48 @@ class ClarifiController extends Controller
 
         return redirect()->route('get.clarifies')->with($notification);
     }
+
+    // Edit an existing clarify.
+    public function EditClarify($id)
+    {
+        $clarify = Clarifi::find($id);
+        return view('admin.backend.clarifies.edit_clarify', compact('clarify'));
+    }
+
+    // Update an existing clarify in the database.
+    public function UpdateClarify(Request $request)
+    {
+        $clarify = Clarifi::findOrFail($request->id);
+
+        $data = [
+            'title' => $request->title,
+            'description' => $request->description,
+        ];
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $manager = new ImageManager(new Driver());
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $img = $manager->read($image);
+            $img->resize(302, 618)->save(public_path('upload/clarify/' . $name_gen));
+
+            $data['image'] = 'upload/clarify/' . $name_gen;
+
+            $oldImagePath = $clarify->image ? public_path($clarify->image) : null;
+            if ($oldImagePath && is_file($oldImagePath)) {
+                unlink($oldImagePath);
+            }
+        }
+
+        $clarify->update($data);
+
+        $notification = array(
+            'message' => $request->hasFile('image')
+                ? 'Clarify updated with image successfully'
+                : 'Clarify updated without image successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('get.clarifies')->with($notification);
+    }
 }

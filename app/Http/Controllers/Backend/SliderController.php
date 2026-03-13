@@ -67,9 +67,13 @@ class SliderController extends Controller
     // Update an existing slider in the database.
     public function UpdateSlider(Request $request)
     {
-        $id = $request->id;
-        $slider = Slider::find($id);
-        $full_path = public_path($slider->image);
+        $slider = Slider::findOrFail($request->id);
+
+        $data = [
+            'title' => $request->title,
+            'description' => $request->description,
+            'link' => $request->link,
+        ];
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -77,39 +81,25 @@ class SliderController extends Controller
             $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $img = $manager->read($image);
             $img->resize(306, 618)->save(public_path('upload/slider/' . $name_gen));
-            $save_url = 'upload/slider/' . $name_gen;
 
-            if (file_exists($full_path)) {
-                unlink($full_path);
+            $data['image'] = 'upload/slider/' . $name_gen;
+
+            $oldImagePath = $slider->image ? public_path($slider->image) : null;
+            if ($oldImagePath && is_file($oldImagePath)) {
+                unlink($oldImagePath);
             }
-
-            Slider::find($id)->update([
-                'title' => $request->title,
-                'description' => $request->description,
-                'link' => $request->link,
-                'image' => $save_url,
-            ]);
-
-            $notification = array(
-                'message' => 'Slider updated with image successfully',
-                'alert-type' => 'success'
-            );
-
-            return redirect()->route('get.slider')->with($notification);
-        } else {
-            Slider::find($id)->update([
-                'title' => $request->title,
-                'description' => $request->description,
-                'link' => $request->link,
-            ]);
-
-            $notification = array(
-                'message' => 'Slider updated without image successfully',
-                'alert-type' => 'success'
-            );
-
-            return redirect()->route('get.slider')->with($notification);
         }
+
+        $slider->update($data);
+
+        $notification = array(
+            'message' => $request->hasFile('image')
+                ? 'Slider updated with image successfully'
+                : 'Slider updated without image successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('get.slider')->with($notification);
     }
 
     // Delete a slider from the database.

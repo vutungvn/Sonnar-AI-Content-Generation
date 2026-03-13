@@ -80,12 +80,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/get/clarifies', 'GetClarifies')->name('get.clarifies');
         Route::get('/add/clarify', 'AddClarify')->name('add.clarify');
         Route::post('/store/clarify', 'StoreClarify')->name('store.clarify');
-        Route::get('/edit/slider/{id}', 'EditSlider')->name('edit.slider');
-        Route::post('/update/slider', 'UpdateSlider')->name('update.slider');
-        Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
-        Route::post('/edit-slider/{id}', 'EditSliderWithTitleAndDescription');
-        Route::post('/edit-features/{id}', 'EditFeatures');
-        Route::post('/edit-reviews/{id}', 'EditReviews');
-        Route::post('/edit-answers/{id}', 'EditAnswers');
+        Route::get('/edit/clarify/{id}', 'EditClarify')->name('edit.clarify');
+        Route::post('/update/clarify', 'UpdateClarify')->name('update.clarify');
+        // Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
     });
 });
