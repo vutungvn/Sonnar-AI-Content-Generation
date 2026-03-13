@@ -83,5 +83,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/clarify/{id}', 'EditClarify')->name('edit.clarify');
         Route::post('/update/clarify', 'UpdateClarify')->name('update.clarify');
         Route::get('/delete/clarify/{id}', 'DeleteClarify')->name('delete.clarify');
+        Route::post('/edit-clarify/{id}', 'EditClarifyWithTitleAndDescription');
     });
 });

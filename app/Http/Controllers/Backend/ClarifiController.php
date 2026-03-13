@@ -116,4 +116,22 @@ class ClarifiController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    // Edit clarify in homepage
+    public function EditClarifyWithTitleAndDescription(Request $request, $id)
+    {
+        $clarify = Clarifi::findOrFail($id);
+
+        if ($request->has('title')) {
+            $clarify->title = $request->title;
+        }
+
+        if ($request->has('description')) {
+            $clarify->description = $request->description;
+        }
+
+        $clarify->save();
+
+        return response()->json(['success' => true]);
+    }
 }

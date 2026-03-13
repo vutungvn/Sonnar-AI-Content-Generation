@@ -121,7 +121,7 @@ class SliderController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    // Edit slider
+    // Edit slider in homepage
     public function EditSliderWithTitleAndDescription(Request $request, $id)
     {
         $slider = Slider::findOrFail($id);

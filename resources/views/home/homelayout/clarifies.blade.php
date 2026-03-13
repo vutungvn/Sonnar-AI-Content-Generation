@@ -71,3 +71,61 @@
         </div>
     </div>
 </section>
+
+{{-- CSRF Token --}}
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const titleElement = document.getElementById('clarify-title');
+        const descriptionElement = document.getElementById('clarify-description');
+
+        function saveChanges(element) {
+            let clarifyId = element.dataset.id;
+            let field = element.id === 'clarify-title' ? 'title' : 'description';
+            let newValue = element.innerText.trim();
+
+            fetch(`/edit-clarify/${clarifyId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({ [field]: newValue })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log(`${field} updated successfully`);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error updating clarify:', error);
+                });
+        }
+
+        // Auto save on Enter key
+        titleElement.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                saveChanges(e.target);
+            }
+        })
+
+        descriptionElement.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                saveChanges(e.target);
+            }
+        })
+
+        // Auto save on Losing Focus
+        titleElement.addEventListener('blur', function () {
+            saveChanges(titleElement);
+        })
+
+        descriptionElement.addEventListener('blur', function () {
+            saveChanges(descriptionElement);
+        })
+    })
+</script>
