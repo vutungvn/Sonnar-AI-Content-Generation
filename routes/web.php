@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\ClarifiController;
 use App\Http\Controllers\Backend\FeatureController;
 use App\Http\Controllers\Backend\ReviewController;
 use App\Http\Controllers\Backend\SliderController;
@@ -72,5 +73,19 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/feature/{id}', 'EditFeature')->name('edit.feature');
         Route::post('/update/feature', 'UpdateFeature')->name('update.feature');
         Route::get('/delete/feature/{id}', 'DeleteFeature')->name('delete.feature');
+    });
+
+    // Clarify Management Routes
+    Route::controller(ClarifiController::class)->group(function () {
+        Route::get('/get/clarifies', 'GetClarifies')->name('get.clarifies');
+        Route::get('/add/slider', 'AddSlider')->name('add.slider');
+        Route::post('/store/slider', 'StoreSlider')->name('store.slider');
+        Route::get('/edit/slider/{id}', 'EditSlider')->name('edit.slider');
+        Route::post('/update/slider', 'UpdateSlider')->name('update.slider');
+        Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
+        Route::post('/edit-slider/{id}', 'EditSliderWithTitleAndDescription');
+        Route::post('/edit-features/{id}', 'EditFeatures');
+        Route::post('/edit-reviews/{id}', 'EditReviews');
+        Route::post('/edit-answers/{id}', 'EditAnswers');
     });
 });

@@ -82,6 +82,24 @@
                     </div>
                 </li>
 
+                <li>
+                    <a href="#clarify" data-bs-toggle="collapse">
+                        <i data-feather="help-circle"></i>
+                        <span> Clarify Management </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="clarify">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('get.clarifies') }}" class="tp-link">All Clarifies</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('add.slider') }}" class="tp-link">Add Clarify</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
                 <li class="menu-title mt-2">General</li>
 
                 <li>
