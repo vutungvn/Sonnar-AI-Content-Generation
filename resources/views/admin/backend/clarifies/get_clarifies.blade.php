@@ -37,7 +37,8 @@
                                         <td>
                                             <a href="{{ route('edit.clarify', $clarify->id) }}"
                                                 class="btn btn-primary btn-sm">Edit</a>
-                                            <a href="" id="delete" class="btn btn-danger btn-sm">Delete</a>
+                                            <a href="{{ route('delete.clarify', $clarify->id) }}" id="delete"
+                                                class="btn btn-danger btn-sm">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -97,4 +97,23 @@ class ClarifiController extends Controller
 
         return redirect()->route('get.clarifies')->with($notification);
     }
+
+    // Delete a clarify from the database.
+    public function DeleteClarify($id)
+    {
+        $clarify = Clarifi::find($id);
+        $image = $clarify->image;
+        if ($image) {
+            unlink($image);
+        }
+
+        Clarifi::find($id)->delete();
+
+        $notification = array(
+            'message' => 'Clarify deleted successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
 }
