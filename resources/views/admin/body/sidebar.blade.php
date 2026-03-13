@@ -94,7 +94,7 @@
                                 <a href="{{ route('get.clarifies') }}" class="tp-link">All Clarifies</a>
                             </li>
                             <li>
-                                <a href="{{ route('add.slider') }}" class="tp-link">Add Clarify</a>
+                                <a href="{{ route('add.clarify') }}" class="tp-link">Add Clarify</a>
                             </li>
                         </ul>
                     </div>
