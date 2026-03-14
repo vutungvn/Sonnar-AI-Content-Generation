@@ -112,7 +112,7 @@
                                 <a href="{{ route('get.usabilities') }}" class="tp-link">All Usabilities</a>
                             </li>
                             <li>
-                                <a href="{{ route('add.clarify') }}" class="tp-link">Add Usability</a>
+                                <a href="{{ route('add.usability') }}" class="tp-link">Add Usability</a>
                             </li>
                         </ul>
                     </div>
