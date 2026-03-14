@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\ClarifiController;
 use App\Http\Controllers\Backend\FeatureController;
 use App\Http\Controllers\Backend\ReviewController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\UsabilityController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -78,6 +79,17 @@ Route::middleware('auth')->group(function () {
     // Clarify Management Routes
     Route::controller(ClarifiController::class)->group(function () {
         Route::get('/get/clarifies', 'GetClarifies')->name('get.clarifies');
+        Route::get('/add/clarify', 'AddClarify')->name('add.clarify');
+        Route::post('/store/clarify', 'StoreClarify')->name('store.clarify');
+        Route::get('/edit/clarify/{id}', 'EditClarify')->name('edit.clarify');
+        Route::post('/update/clarify', 'UpdateClarify')->name('update.clarify');
+        Route::get('/delete/clarify/{id}', 'DeleteClarify')->name('delete.clarify');
+        Route::post('/edit-clarify/{id}', 'EditClarifyWithTitleAndDescription');
+    });
+
+    // Usability Management Routes
+    Route::controller(UsabilityController::class)->group(function () {
+        Route::get('/get/usabilities', 'GetUsabilities')->name('get.usabilities');
         Route::get('/add/clarify', 'AddClarify')->name('add.clarify');
         Route::post('/store/clarify', 'StoreClarify')->name('store.clarify');
         Route::get('/edit/clarify/{id}', 'EditClarify')->name('edit.clarify');

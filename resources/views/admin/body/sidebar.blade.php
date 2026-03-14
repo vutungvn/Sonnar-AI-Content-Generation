@@ -100,6 +100,24 @@
                     </div>
                 </li>
 
+                <li>
+                    <a href="#usability" data-bs-toggle="collapse">
+                        <i data-feather="user-check"></i>
+                        <span> Usability Management </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="usability">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('get.usabilities') }}" class="tp-link">All Usabilities</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('add.clarify') }}" class="tp-link">Add Usability</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
                 <li class="menu-title mt-2">General</li>
 
                 <li>
