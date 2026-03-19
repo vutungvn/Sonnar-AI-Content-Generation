@@ -57,4 +57,50 @@ class UsabilityController extends Controller
 
         return redirect()->route('get.usabilities')->with($notification);
     }
+
+    // Edit an existing usability.
+    public function EditUsability($id)
+    {
+        $usability = Usability::find($id);
+        return view('admin.backend.usabilities.edit_usability', compact('usability'));
+    }
+
+    // Update an existing usability in the database.
+    public function UpdateUsability(Request $request)
+    {
+        $usability = Usability::findOrFail($request->id);
+
+        $data = [
+            'title' => $request->title,
+            'description' => $request->description,
+            'youtube' => $request->youtube,
+            'link' => $request->link,
+        ];
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $manager = new ImageManager(new Driver());
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $img = $manager->read($image);
+            $img->resize(560, 400)->save(public_path('upload/usability/' . $name_gen));
+
+            $data['image'] = 'upload/usability/' . $name_gen;
+
+            $oldImagePath = $usability->image ? public_path($usability->image) : null;
+            if ($oldImagePath && is_file($oldImagePath)) {
+                unlink($oldImagePath);
+            }
+        }
+
+        $usability->update($data);
+
+        $notification = array(
+            'message' => $request->hasFile('image')
+                ? 'Usability updated with image successfully'
+                : 'Usability updated without image successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('get.usabilities')->with($notification);
+    }
 }

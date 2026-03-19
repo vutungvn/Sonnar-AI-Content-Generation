@@ -6,7 +6,7 @@
         <div class="container-xxl">
             <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
                 <div class="flex-grow-1">
-                    <h4 class="fs-18 fw-semibold m-0">Add Usability</h4>
+                    <h4 class="fs-18 fw-semibold m-0">Edit Usability</h4>
                 </div>
             </div>
 
@@ -30,15 +30,18 @@
                                                     </div>
                                                 </div>
 
-                                                <form action="{{ route('store.usability') }}" method="POST"
+                                                <form action="{{ route('update.usability') }}" method="POST"
                                                     enctype="multipart/form-data">
                                                     @csrf
+
+                                                    <input type="hidden" name="id" value="{{ $usability->id }}">
 
                                                     <div class="card-body">
                                                         <div class="form-group mb-3 row">
                                                             <label class="form-label">Title</label>
                                                             <div class="col-lg-12 col-xl-12">
-                                                                <input class="form-control" type="text" name="title">
+                                                                <input class="form-control" type="text" name="title"
+                                                                    value="{{ $usability->title }}">
                                                             </div>
                                                         </div>
 
@@ -46,21 +49,23 @@
                                                             <label class="form-label">Description</label>
                                                             <div class="col-lg-12 col-xl-12">
                                                                 <textarea class="form-control"
-                                                                    name="description"></textarea>
+                                                                    name="description">{{ $usability->description }}</textarea>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group mb-3 row">
                                                             <label class="form-label">Youtube Link</label>
                                                             <div class="col-lg-12 col-xl-12">
-                                                                <input class="form-control" type="text" name="youtube">
+                                                                <input class="form-control" type="text" name="youtube"
+                                                                    value="{{ $usability->youtube }}">
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group mb-3 row">
                                                             <label class="form-label">Link</label>
                                                             <div class="col-lg-12 col-xl-12">
-                                                                <input class="form-control" type="text" name="link">
+                                                                <input class="form-control" type="text" name="link"
+                                                                    value="{{ $usability->link }}">
                                                             </div>
                                                         </div>
 
@@ -75,7 +80,7 @@
                                                         <div class="form-group mb-3 row">
                                                             <label class="form-label"></label>
                                                             <div class="col-lg-12 col-xl-12">
-                                                                <img id="showImage" src="{{url('upload/no_image.jpeg') }}"
+                                                                <img id="showImage" src="{{ asset($usability->image) }}"
                                                                     class="rounded-circle avatar-xxl img-thumbnail float-start"
                                                                     alt="Usability Photo">
                                                             </div>
