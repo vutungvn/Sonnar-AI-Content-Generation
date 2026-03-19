@@ -94,7 +94,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/store/usability', 'StoreUsability')->name('store.usability');
         Route::get('/edit/usability/{id}', 'EditUsability')->name('edit.usability');
         Route::post('/update/usability', 'UpdateUsability')->name('update.usability');
-        // Route::get('/delete/clarify/{id}', 'DeleteClarify')->name('delete.clarify');
+        Route::get('/delete/usability/{id}', 'DeleteUsability')->name('delete.usability');
         // Route::post('/edit-clarify/{id}', 'EditClarifyWithTitleAndDescription');
     });
 });

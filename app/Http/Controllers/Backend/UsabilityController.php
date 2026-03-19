@@ -103,4 +103,23 @@ class UsabilityController extends Controller
 
         return redirect()->route('get.usabilities')->with($notification);
     }
+
+    // Delete a usability from the database.
+    public function DeleteUsability($id)
+    {
+        $usability = Usability::find($id);
+        $image = $usability->image;
+        if ($image) {
+            unlink($image);
+        }
+
+        Usability::find($id)->delete();
+
+        $notification = array(
+            'message' => 'Usability deleted successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
 }

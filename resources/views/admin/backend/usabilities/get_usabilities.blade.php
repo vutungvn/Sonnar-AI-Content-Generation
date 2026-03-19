@@ -41,7 +41,7 @@
                                         <td>
                                             <a href="{{ route('edit.usability', $usability->id) }}"
                                                 class="btn btn-primary btn-sm">Edit</a>
-                                            <a href="{{ route('edit.usability', $usability->id) }}" id="delete"
+                                            <a href="{{ route('delete.usability', $usability->id) }}" id="delete"
                                                 class="btn btn-danger btn-sm">Delete</a>
                                         </td>
                                     </tr>
